@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2015 at 01:59 PM
+-- Generation Time: Dec 26, 2015 at 03:44 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -32,21 +32,15 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `teacher_id` varchar(255) NOT NULL,
   `record` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
 --
 
 INSERT INTO `attendance` (`id`, `student_id`, `date`, `teacher_id`, `record`) VALUES
-(18, '14S002', '2015-12-24 22:31:21', '10T002', 1),
-(19, '14S003', '2015-12-24 22:31:21', '10T002', 0),
-(20, '14S004', '2015-12-24 22:31:21', '10T002', 0),
-(21, '10S001', '2015-12-26 12:55:58', '10T001', 1),
-(22, '10S002', '2015-12-26 12:55:58', '10T001', 1),
-(23, '17S005', '2015-12-26 12:59:01', '10T002', 1),
-(24, '10S003', '2015-12-26 12:59:01', '10T002', 1),
-(25, '15S012', '2015-12-26 12:59:01', '10T002', 1);
+(26, '10S001', '2015-12-26 14:43:16', '10T001', 1),
+(27, '10S002', '2015-12-26 14:43:16', '10T001', 1);
 
 -- --------------------------------------------------------
 
@@ -310,7 +304,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `users`
 --
