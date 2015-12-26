@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2015 at 09:42 AM
+-- Generation Time: Dec 26, 2015 at 01:59 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -23,23 +23,52 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE IF NOT EXISTS `attendance` (
+`id` int(11) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `teacher_id` varchar(255) NOT NULL,
+  `record` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `student_id`, `date`, `teacher_id`, `record`) VALUES
+(18, '14S002', '2015-12-24 22:31:21', '10T002', 1),
+(19, '14S003', '2015-12-24 22:31:21', '10T002', 0),
+(20, '14S004', '2015-12-24 22:31:21', '10T002', 0),
+(21, '10S001', '2015-12-26 12:55:58', '10T001', 1),
+(22, '10S002', '2015-12-26 12:55:58', '10T001', 1),
+(23, '17S005', '2015-12-26 12:59:01', '10T002', 1),
+(24, '10S003', '2015-12-26 12:59:01', '10T002', 1),
+(25, '15S012', '2015-12-26 12:59:01', '10T002', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `class`
 --
 
 CREATE TABLE IF NOT EXISTS `class` (
   `teacher_id` varchar(255) NOT NULL,
   `school_id` varchar(20) NOT NULL,
-  `class_id` varchar(20) NOT NULL
+  `class_id` varchar(20) NOT NULL,
+  `strength` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`teacher_id`, `school_id`, `class_id`) VALUES
-('10T001', 'abcd', '1B'),
-('10T003', 'abcd', '5A'),
-('10T002', 'abcd', '8A');
+INSERT INTO `class` (`teacher_id`, `school_id`, `class_id`, `strength`) VALUES
+('10T001', 'abcd', '1B', 2),
+('10T002', 'abcd', '5B', 3),
+('10T002', 'abcd', '8A', 3);
 
 -- --------------------------------------------------------
 
@@ -78,6 +107,7 @@ INSERT INTO `school` (`school_id`, `school_name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `student` (
   `name` varchar(255) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
   `roll` int(10) NOT NULL,
   `class_id` varchar(11) NOT NULL,
   `school_id` varchar(10) NOT NULL
@@ -87,16 +117,15 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`name`, `roll`, `class_id`, `school_id`) VALUES
-('Arka Roy', 1, '1B', 'abcd'),
-('Akash Saha', 2, '8A', 'abcd'),
-('Suprotim Das', 3, '8A', 'abcd'),
-('Adarsh Singh', 4, '8A', 'abcd'),
-('Shrey Sharma', 5, '5B', 'abcd'),
-('Aakash Basu', 6, '1B', 'abcd'),
-('Anmol Verma', 7, '5B', 'abcd'),
-('Debpriya Piri', 8, '5B', 'abcd'),
-('Test', 1234, 'xyz', 'abcd');
+INSERT INTO `student` (`name`, `student_id`, `roll`, `class_id`, `school_id`) VALUES
+('Arka Roy', '10S001', 1, '1B', 'abcd'),
+('Akash Saha', '14S002', 2, '8A', 'abcd'),
+('Suprotim Das', '14S003', 3, '8A', 'abcd'),
+('Adarsh Singh', '14S004', 4, '8A', 'abcd'),
+('Shrey Sharma', '17S005', 5, '5B', 'abcd'),
+('Aakash Basu', '10S002', 6, '1B', 'abcd'),
+('Anmol Verma', '10S003', 7, '5B', 'abcd'),
+('Debpriya Piri', '15S012', 8, '5B', 'abcd');
 
 -- --------------------------------------------------------
 
@@ -155,10 +184,18 @@ INSERT INTO `teacher` (`Teacher_Name`, `teacher_id`, `school_id`, `Teacher_subje
 --
 
 CREATE TABLE IF NOT EXISTS `teacher_class` (
-  `s.no.` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `s.no.` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `teacher_id` varchar(20) NOT NULL,
   `class_id` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacher_class`
+--
+
+INSERT INTO `teacher_class` (`s.no.`, `teacher_id`, `class_id`) VALUES
+('2015-12-20 18:30:00', '14T001', '1A'),
+('2015-12-24 20:09:48', '11T001', '8');
 
 -- --------------------------------------------------------
 
@@ -212,6 +249,12 @@ INSERT INTO `user_type` (`user_type_id`, `user_type`) VALUES
 --
 
 --
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
@@ -263,6 +306,11 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `users`
 --
